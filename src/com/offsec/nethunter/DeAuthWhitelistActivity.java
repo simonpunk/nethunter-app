@@ -30,8 +30,8 @@ public class DeAuthWhitelistActivity extends AppCompatActivity {
         }
 
         EditText whitelist = (EditText) findViewById(R.id.deauth_modify);
-        whitelist.setText(String.format(Locale.getDefault(),getString(R.string.loading_file), "/sdcard/nh_files/deauth/whitelist.txt"));
-        exe.ReadFile_ASYNC("/sdcard/nh_files/deauth/whitelist.txt", whitelist);
+        whitelist.setText(String.format(Locale.getDefault(),getString(R.string.loading_file), nh.SD_PATH + "/nh_files/deauth/whitelist.txt"));
+        exe.ReadFile_ASYNC(nh.SD_PATH + "/nh_files/deauth/whitelist.txt", whitelist);
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -44,7 +44,7 @@ public class DeAuthWhitelistActivity extends AppCompatActivity {
     public void updatewhitelist(View view) {
         EditText source = (EditText) findViewById(R.id.deauth_modify);
         String newSource = source.getText().toString();
-        Boolean isSaved = exe.SaveFileContents(newSource, "/sdcard/nh_files/deauth/whitelist.txt");
+        Boolean isSaved = exe.SaveFileContents(newSource, nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
         if (isSaved) {
             nh.showMessage("Source updated");
         } else {

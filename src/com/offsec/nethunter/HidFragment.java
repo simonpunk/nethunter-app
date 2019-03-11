@@ -175,16 +175,16 @@ public class HidFragment extends Fragment {
         if (pageNum == 0) {
             switch (UACBypassIndex) {
                 case 0:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met --" + lang;
                     break;
                 case 1:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met-elevated-win7 --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met-elevated-win7 --" + lang;
                     break;
                 case 2:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met-elevated-win8 --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met-elevated-win8 --" + lang;
                     break;
                 case 3:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met-elevated-win10 --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali start-rev-met-elevated-win10 --" + lang;
                     break;
                 default:
                     nh.showMessage("No option selected 1");
@@ -193,16 +193,16 @@ public class HidFragment extends Fragment {
         } else if (pageNum == 1) {
             switch (UACBypassIndex) {
                 case 0:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd --" + lang;
                     break;
                 case 1:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd-elevated-win7 --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd-elevated-win7 --" + lang;
                     break;
                 case 2:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd-elevated-win8 --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd-elevated-win8 --" + lang;
                     break;
                 case 3:
-                    command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd-elevated-win10 --" + lang + "'";
+                    command[0] = nh.APP_SCRIPTS_PATH + "/bootkali hid-cmd-elevated-win10 --" + lang;
                     break;
                 default:
                     nh.showMessage("No option selected 2");
@@ -623,7 +623,7 @@ public class HidFragment extends Fragment {
                 ShellExecuter exe_check = new ShellExecuter();
                 String hidgs[] = {"/dev/hidg0", "/dev/hidg1"};
                 for (String hidg : hidgs) {
-                    if (!exe_check.RunAsRootOutput("su -c \"stat -c '%a' " + hidg + "\"").equals("666")) {
+                    if (!exe_check.RunAsRootOutput("stat -c '%a' " + hidg).equals("666")) {
                         isHIDenable = false;
                         break;
                     }

@@ -77,7 +77,7 @@ public class PineappleFragment extends Fragment {
                 new Thread(new Runnable() {
                     public void run() {
                         ShellExecuter exe = new ShellExecuter();
-                        String command = "su -c '" + nh.APP_SCRIPTS_PATH + "/pine-nano " + start_type + startConnection(rootView) + proxy_type + "'";
+                        String command = nh.APP_SCRIPTS_PATH + "/pine-nano " + start_type + startConnection(rootView) + proxy_type;
                         Log.d(TAG, command);
                         exe.RunAsRootOutput(command);
                     }
@@ -92,7 +92,7 @@ public class PineappleFragment extends Fragment {
                 new Thread(new Runnable() {
                     public void run() {
                         ShellExecuter exe = new ShellExecuter();
-                        String command = "su -c '" + nh.APP_SCRIPTS_PATH + "/pine-nano stop'";
+                        String command = nh.APP_SCRIPTS_PATH + "/pine-nano stop";
                         Log.d(TAG, command);
                         exe.RunAsRootOutput(command);
                     }

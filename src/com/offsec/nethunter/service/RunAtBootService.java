@@ -95,7 +95,7 @@ public class RunAtBootService extends JobIntentService {
             } else {
                 doNotification(getString(R.string.toastdeletingchroot));
                 Toast.makeText(getBaseContext(), getString(R.string.toastdeletingchroot), Toast.LENGTH_LONG).show();
-                x.RunAsRootOutput("su -c 'rm -rf " + nh.NH_SYSTEM_PATH + "/*'");
+                x.RunAsRootOutput("rm -rf " + nh.NH_SYSTEM_PATH + "/*");
                 // remove the sp so we dont remove it again on next boot
                 sharedpreferences.edit().remove(ChrootManagerFragment.DELETE_CHROOT_TAG).apply();
                 sharedpreferences.edit().remove(ChrootManagerFragment.CHROOT_INSTALLED_TAG).apply();
@@ -124,7 +124,7 @@ public class RunAtBootService extends JobIntentService {
             } else {
                 doNotification("Starting chroot migration...");
                 Toast.makeText(getBaseContext(), getString(R.string.toastmigratingchroot), Toast.LENGTH_LONG).show();
-                x.RunAsRootOutput("su -c 'mv " + nh.OLD_CHROOT_PATH + " " + nh.NH_SYSTEM_PATH + "'");
+                x.RunAsRootOutput("mv " + nh.OLD_CHROOT_PATH + " " + nh.NH_SYSTEM_PATH);
                 Toast.makeText(getBaseContext(), getString(R.string.toastmigratedchroot), Toast.LENGTH_LONG).show();
                 sharedpreferences.edit().remove(ChrootManagerFragment.MIGRATE_CHROOT_TAG).apply();
                 doNotification(getString(R.string.toastmigratedchroot));

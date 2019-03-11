@@ -741,7 +741,7 @@ ChrootManagerFragment extends Fragment {
                     publishProgress(getActivity().getString(R.string.extract_chroot_gz));
                     x.RunAsRootOutput(nh.whichBusybox() + " mount -o remount,suid /data && chmod +s " + nh.CHROOT_PATH + "/usr/bin/sudo && "
                             + "sleep 5 && "
-                            + "bootkali extract-chroot /sdcard/kalifs-backup.tar.gz"
+                            + "bootkali extract-chroot " + nh.SD_PATH + "/kalifs-backup.tar.gz"
                     );
 
                     //Restore the symlink to kali chroot, this is very important otherwise many things will be borken in the chroot.

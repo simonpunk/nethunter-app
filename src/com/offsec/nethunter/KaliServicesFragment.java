@@ -107,18 +107,14 @@ public class KaliServicesFragment extends Fragment {
 
                 // {name, check_cmd, start_cmd, stop_cmd, init_service_filename}
 
-                {"SSH", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalissh", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali ssh start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali ssh stop'", "70ssh"},
-                {"Dnsmasq", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalidnsmq", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali dnsmasq start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali dnsmasq stop'", "70dnsmasq"},
-                {"Hostapd", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalihostapd", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali hostapd start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali hostapd stop'", "70hostapd"},
-                {"OpenVPN", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalivpn", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali openvpn start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali openvpn stop'", "70openvpn"},
-                {"Apache", "sh " + nh.APP_SCRIPTS_PATH + "/check-kaliapache", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali apache start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali apache stop'", "70apache"},
-                //{"Metasploit", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalimetasploit", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali msf start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali msf stop'", "70msf"},
-                {"Fruity WiFi", "sh " + nh.APP_SCRIPTS_PATH + "/check-fruity-wifi", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali fruitywifi start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali fruitywifi stop'", "70fruity"},
-                //{"DHCP", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalidhcp","su -c '" + cachedir + "/bootkali dhcp start'","su -c '" + cachedir + "/bootkali dhcp stop'", "70dhcp"},
-                {"BeEF Framework", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalibeef-xss", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali beef-xss start'", "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali beef-xss stop'", "70beef"},
-                {"Y-cable Charging", "sh " + nh.APP_SCRIPTS_PATH + "/check-ycable", "su -c 'bootkali ycable start'", "su -c 'bootkali ycable stop'", "70ycable"}
-                // the stop script isnt working well, doing a raw cmd instead to stop vnc
-                // {"VNC", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalivnc", "" + cachedir + "/bootkali\nvncserver", "" + cachedir + "/bootkali\nkill $(ps aux | grep 'Xtightvnc' | awk '{print $2}');CT=0;for x in $(ps aux | grep 'Xtightvnc' | awk '{print $2}'); do CT=$[$CT +1];tightvncserver -kill :$CT; done;rm /root/.vnc/*.log;rm -r /tmp/.X*", "70vnc"},
+                {"SSH", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalissh", "/bootkali ssh start", nh.APP_SCRIPTS_PATH + "/bootkali ssh stop", "70ssh"},
+                {"Dnsmasq", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalidnsmq", nh.APP_SCRIPTS_PATH + "/bootkali dnsmasq start", nh.APP_SCRIPTS_PATH + "/bootkali dnsmasq stop", "70dnsmasq"},
+                {"Hostapd", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalihostapd", nh.APP_SCRIPTS_PATH + "/bootkali hostapd start", nh.APP_SCRIPTS_PATH + "/bootkali hostapd stop", "70hostapd"},
+                {"OpenVPN", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalivpn", nh.APP_SCRIPTS_PATH + "/bootkali openvpn start", nh.APP_SCRIPTS_PATH + "/bootkali openvpn stop", "70openvpn"},
+                {"Apache", "sh " + nh.APP_SCRIPTS_PATH + "/check-kaliapache", nh.APP_SCRIPTS_PATH + "/bootkali apache start", nh.APP_SCRIPTS_PATH + "/bootkali apache stop", "70apache"},
+                {"Fruity WiFi", "sh " + nh.APP_SCRIPTS_PATH + "/check-fruity-wifi", nh.APP_SCRIPTS_PATH + "/bootkali fruitywifi start", nh.APP_SCRIPTS_PATH + "/bootkali fruitywifi stop", "70fruity"},
+                {"BeEF Framework", "sh " + nh.APP_SCRIPTS_PATH + "/check-kalibeef-xss", nh.APP_SCRIPTS_PATH + "/bootkali beef-xss start", nh.APP_SCRIPTS_PATH + "/bootkali beef-xss stop", "70beef"},
+                {"Y-cable Charging", "sh " + nh.APP_SCRIPTS_PATH + "/check-ycable", "bootkali ycable start", "bootkali ycable stop", "70ycable"}
         };
     }
 

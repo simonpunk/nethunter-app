@@ -19,11 +19,10 @@ class SearchSploitSQL extends SQLiteOpenHelper {
     private final ShellExecuter exe = new ShellExecuter();
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "SearchSploit";
+    NhPaths nh = new NhPaths();
 
     SearchSploitSQL(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        NhPaths nh = new NhPaths();
-
     }
 
     public void onCreate(SQLiteDatabase database) {
@@ -55,8 +54,8 @@ class SearchSploitSQL extends SQLiteOpenHelper {
     }
 
     Boolean doDbFeed() {
-        File f = new File("/sdcard/nh_files/SearchSploit");
-        String _cmd1[] = {"su -c bootkali convert_exploitdb " + SearchSploit.TABLE};
+        File f = new File(nh.SD_PATH + "/nh_files/SearchSploit");
+        String _cmd1[] = {"bootkali convert_exploitdb " + SearchSploit.TABLE};
         exe.RunAsRoot(_cmd1);
         if (f.exists() && !f.isDirectory()) return true;
         else return false;

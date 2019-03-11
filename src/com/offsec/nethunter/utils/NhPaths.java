@@ -3,7 +3,13 @@ package com.offsec.nethunter.utils;
 import android.os.Environment;
 import android.view.Gravity;
 import android.widget.Toast;
-
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.IOException;
 import java.io.File;
 import static com.offsec.nethunter.AppNavHomeActivity.getAppContext;
 
@@ -87,12 +93,10 @@ public class NhPaths {
         nh.APP_INITD_PATH = APP_PATH + "/etc/init.d";
         nh.APP_SCRIPTS_PATH = APP_PATH + "/scripts";
         // SD PATHS
-        CheckForDevices UserDevice = new CheckForDevices();
-        if (UserDevice.isOPO5()) {
+        File sd_dir = new File("/sdcard");
+        if (sd_dir.exists()) {
             nh.SD_PATH = "/sdcard";
-        } else {
-            nh.SD_PATH = Environment.getExternalStorageDirectory().toString(); // /sdcard for the friends.
-        }
+        } else nh.SD_PATH = Environment.getExternalStorageDirectory().toString();
         // chaged from /files to /nh_files (was too generic.)
         nh.NH_SD_FOLDER_NAME = "nh_files";  // MUST MATCH assets/nh_files change both or none!!!! ^^
         nh.APP_SD_FILES_PATH = SD_PATH + "/" + NH_SD_FOLDER_NAME;
@@ -105,7 +109,6 @@ public class NhPaths {
         nh.CHROOT_PATH = NH_SYSTEM_PATH + ARCH_FOLDER;
         // old CHROOT
         nh.OLD_CHROOT_PATH = "/data/local/kali-armhf";
-
     }
 
     public void showMessage(String message) {
@@ -127,7 +130,6 @@ public class NhPaths {
                 "/system/xbin/busybox_nh",
                 "/sbin/busybox_nh",
                 "/system/bin/busybox",
-                "/data/local/bin/busybox",
                 "/system/xbin/busybox",
                 "/data/adb/magisk/busybox",
                 "/sbin/.magisk/busybox/busybox"

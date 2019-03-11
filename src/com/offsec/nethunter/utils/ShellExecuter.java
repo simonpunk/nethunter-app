@@ -54,7 +54,7 @@ public class ShellExecuter {
 
     public void RunAsRoot(String[] command) {
         try {
-            Process process = Runtime.getRuntime().exec("su");
+            Process process = Runtime.getRuntime().exec("su --mount-master");
             DataOutputStream os = new DataOutputStream(process.getOutputStream());
             for (String tmpmd : command) {
                 os.writeBytes(tmpmd + '\n');
@@ -76,7 +76,7 @@ public class ShellExecuter {
         try {
             String output = "";
             String line;
-            Process process = Runtime.getRuntime().exec("su");
+            Process process = Runtime.getRuntime().exec("su --mount-master");
             OutputStream stdin = process.getOutputStream();
             InputStream stderr = process.getErrorStream();
             InputStream stdout = process.getInputStream();
@@ -123,7 +123,7 @@ public class ShellExecuter {
         String output = "";
         String line;
         try {
-            Process process = Runtime.getRuntime().exec("su");
+            Process process = Runtime.getRuntime().exec("su --mount-master");
             OutputStream stdin = process.getOutputStream();
             InputStream stderr = process.getErrorStream();
             InputStream stdout = process.getInputStream();
@@ -161,7 +161,7 @@ public class ShellExecuter {
             public void run() {
                 String output = "";
                 try {
-                    Process  p = Runtime.getRuntime().exec("su -c " + command);
+                    Process  p = Runtime.getRuntime().exec("su --mount-master -c " + command);
                     p.waitFor();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     String line;
@@ -187,7 +187,7 @@ public class ShellExecuter {
         String command = "cat " + _path;
         Process p;
         try {
-            p = Runtime.getRuntime().exec("su -c " + command);
+            p = Runtime.getRuntime().exec("su --mount-master -c " + command);
             p.waitFor();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;

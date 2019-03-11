@@ -151,7 +151,7 @@ public class BootKali {
         String output = "";
         String line;
         try {
-            Process process = Runtime.getRuntime().exec("su");
+            Process process = Runtime.getRuntime().exec("su --mount-master");
             OutputStream stdin = process.getOutputStream();
             InputStream stderr = process.getErrorStream();
             InputStream stdout = process.getInputStream();
@@ -186,7 +186,7 @@ public class BootKali {
                 String output = "";
                 String line;
                 try {
-                    Process process = Runtime.getRuntime().exec("su");
+                    Process process = Runtime.getRuntime().exec("su --mount-master");
                     OutputStream stdin = process.getOutputStream();
                     InputStream stderr = process.getErrorStream();
                     //InputStream stdout = process.getInputStream();
@@ -207,19 +207,4 @@ public class BootKali {
             }
         }).start();
     }
-
-    public String GET_TERM_CMD() {
-        return "su -c \"" + TERM_CMD + "\"";
-    }
-
-    // this string is the comand to pop a kaly shell (intent to the terminal, pass this a command)
-    public String GET_KALI_SHELL_CMD() {
-        return "su -c \"clear && " + BOOTKALI + "/bin/login -f root \"";
-    }
-
-    public String GET_CMD() {
-        return FULL_CMD;
-    }
-
-
 }

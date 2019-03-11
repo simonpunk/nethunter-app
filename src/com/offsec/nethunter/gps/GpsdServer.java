@@ -54,7 +54,7 @@ public class GpsdServer extends AsyncTask<Void, Void, Void> {
                         e.printStackTrace();
                     }
                     ShellExecuter exe = new ShellExecuter();
-                    String command = "su -c '" + SCRIPT_PATH + File.separator + "bootkali start_gpsd " + String.valueOf(PORT) + "'";
+                    String command = SCRIPT_PATH + File.separator + "bootkali start_gpsd " + String.valueOf(PORT);
                     Log.d(TAG, command);
                     String response = exe.RunAsRootOutput(command);
                     Log.d(TAG, "Response = " + response);

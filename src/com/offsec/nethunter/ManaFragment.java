@@ -165,11 +165,11 @@ public class ManaFragment extends Fragment {
                         break;
                     case 4:
                         nh.showMessage("Starting HOSTAPD-WPE");
-                        intentClickListener_NH(nh.makeTermTitle("HOSTAPD-WPE") + "ifconfig wlan1 up && /usr/bin/hostapd-wpe /sdcard/nh_files/configs/hostapd-wpe.conf");
+                        intentClickListener_NH(nh.makeTermTitle("HOSTAPD-WPE") + "ifconfig wlan1 up && /usr/bin/hostapd-wpe " + nh.SD_PATH + "/nh_files/configs/hostapd-wpe.conf");
                         break;
                     case 5:
                         nh.showMessage("Starting HOSTAPD-WPE with Karma");
-                        intentClickListener_NH(nh.makeTermTitle("HOSTAPD-WPE-KARMA") + "ifconfig wlan1 up && /usr/bin/hostapd-wpe -k /sdcard/nh_files/configs/hostapd-wpe.conf");
+                        intentClickListener_NH(nh.makeTermTitle("HOSTAPD-WPE-KARMA") + "ifconfig wlan1 up && /usr/bin/hostapd-wpe -k " + nh.SD_PATH + "/nh_files/configs/hostapd-wpe.conf");
                         break;
                     default:
                         nh.showMessage("Invalid script!");
@@ -198,9 +198,9 @@ public class ManaFragment extends Fragment {
         ShellExecuter exe = new ShellExecuter();
         String[] command = new String[1];
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali mana-lollipop stop'";
+            command[0] = nh.APP_SCRIPTS_PATH + "/bootkali mana-lollipop stop";
         } else {
-            command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali mana-kitkat stop'";
+            command[0] = nh.APP_SCRIPTS_PATH + "/bootkali mana-kitkat stop";
         }
         exe.RunAsRoot(command);
         nh.showMessage("Mana Stopped");

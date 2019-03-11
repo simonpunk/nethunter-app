@@ -214,11 +214,11 @@ public class DuckHunterFragment extends Fragment implements ActionBar.TabListene
     private static void convert() {
         ShellExecuter exe = new ShellExecuter();
         if (updatefile()) {
-            Log.d(TAG, lang);
-            String command = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali duck-hunt-convert" +
+            String command = nh.APP_SCRIPTS_PATH + "/bootkali duck-hunt-convert" +
                     " " + lang +
                     " " + DuckHunterConvertFragment.configFile +
-                    " " + DuckHunterPreviewFragment.configFile + "'";
+                    " " + DuckHunterPreviewFragment.configFile;
+            Log.d(TAG, "Languague: " + lang + " || command: " + command);
             String check_output = exe.RunAsRootOutput(command);
             if (check_output.equals("1")){
                 nh.showMessage_long("Something's wrong when generating the duckout script!");
@@ -228,8 +228,8 @@ public class DuckHunterFragment extends Fragment implements ActionBar.TabListene
 
     private void start() {
         String[] command = new String[1];
-        command[0] = "su -c '" + nh.APP_SCRIPTS_PATH + "/bootkali duck-hunt-run" +
-                    " " + DuckHunterPreviewFragment.configFile + "'";
+        command[0] = nh.APP_SCRIPTS_PATH + "/bootkali duck-hunt-run" +
+                    " " + DuckHunterPreviewFragment.configFile;
         Log.d(TAG, command[0]);
         ShellExecuter exe = new ShellExecuter();
         exe.RunAsRoot(command);
@@ -648,7 +648,7 @@ public class DuckHunterFragment extends Fragment implements ActionBar.TabListene
         ShellExecuter exe_check = new ShellExecuter();
         String hidgs[] = {"/dev/hidg0", "/dev/hidg1"};
         for (String hidg : hidgs) {
-            if (!exe_check.RunAsRootOutput("su -c \"stat -c '%a' " + hidg + "\"").equals("666")) {
+            if (!exe_check.RunAsRootOutput("stat -c '%a' " + hidg).equals("666")) {
                 return false;
             }
 

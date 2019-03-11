@@ -119,7 +119,7 @@ public class UsbArmyFragment extends Fragment {
                         public void run() {
                             Intent intent = new Intent("com.offsec.nhterm.RUN_SCRIPT");
                             intent.addCategory(Intent.CATEGORY_DEFAULT);
-                            intent.putExtra("com.offsec.nhterm.iInitialCommand", nh.makeTermTitle("ScriptRunner") + "su -c \"sh " + script_folder_path + "/" + scriptSpinner.getSelectedItem().toString() + "\"");
+                            intent.putExtra("com.offsec.nhterm.iInitialCommand", nh.makeTermTitle("ScriptRunner") + "su --mount-master -c \"sh " + script_folder_path + "/" + scriptSpinner.getSelectedItem().toString() + "\"");
                             startActivity(intent);
                         }
                     }).start();

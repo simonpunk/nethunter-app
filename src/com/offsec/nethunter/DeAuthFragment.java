@@ -88,7 +88,7 @@ import android.widget.AdapterView.OnItemClickListener;
                     new BootKali("airmon-ng start  " + wlan.getText()).run_bg();
                     Thread.sleep(2000);
                     if (whitelist.isChecked()){
-                        whitelist_command = "-w /sdcard/nh_files/deauth/whitelist.txt ";
+                        whitelist_command = "-w " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt ";
                     }
                     else{
                         whitelist_command = "";
@@ -104,8 +104,8 @@ import android.widget.AdapterView.OnItemClickListener;
             public void onClick(View v) {
 
                 /**TODO: create .sh that executes the commands and puts its output in a file and then read the file in the textview 20/02/17*/
-                new BootKali("cp /sdcard/nh_files/deauth/scan.sh /root/scan.sh & chmod +x /root/scan.sh").run_bg();
-                String cmd = "./root/scan.sh " + wlan.getText() + " | tr -s [:space:] > /sdcard/nh_files/deauth/output.txt";
+                new BootKali("cp " + nh.SD_PATH + "/nh_files/deauth/scan.sh /root/scan.sh & chmod +x /root/scan.sh").run_bg();
+                String cmd = "./root/scan.sh " + wlan.getText() + " | tr -s [:space:] > " + nh.SD_PATH + "/nh_files/deauth/output.txt";
                 try {
                     new BootKali("ifconfig " + wlan.getText() + " up").run_bg();
                     Thread.sleep(1000);
@@ -116,7 +116,7 @@ import android.widget.AdapterView.OnItemClickListener;
                 try {
                     Thread.sleep(5000);
                     nh = new NhPaths();
-                    String output = exe.RunAsRootOutput("cat /sdcard/nh_files/deauth/output.txt").replace("Channel:","\n Channel:");
+                    String output = exe.RunAsRootOutput("cat " + nh.SD_PATH + "/nh_files/deauth/output.txt").replace("Channel:","\n Channel:");
                     term.setText(output);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -130,7 +130,7 @@ import android.widget.AdapterView.OnItemClickListener;
             public void onClick(View v){
                 if (whitelist.isChecked()){
                     white_me.setClickable(true);
-                    String check_me = exe.RunAsRootOutput("grep -q " + getmac(wlan.getText().toString()) + " \"/sdcard/nh_files/deauth/whitelist.txt\" && echo $?");
+                    String check_me = exe.RunAsRootOutput("grep -q " + getmac(wlan.getText().toString()) + " \"" + nh.SD_PATH + "/nh_files/deauth/whitelist.txt\" && echo $?");
                     if (check_me.contains("0")){
                         white_me.setChecked(true);
                     }
@@ -149,18 +149,18 @@ import android.widget.AdapterView.OnItemClickListener;
                 if (whitelist.isChecked()) {
                     if (white_me.isChecked()) {
                         if (wlan.getText().toString() == "wlan0") {
-                            exe.RunAsRootOutput("echo '" + getmac(wlan.getText().toString()) + "' >> /sdcard/nh_files/deauth/whitelist.txt");
+                            exe.RunAsRootOutput("echo '" + getmac(wlan.getText().toString()) + "' >> " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
 
                         } else {
-                            exe.RunAsRootOutput("echo '" + getmac("wlan0") + "' >> /sdcard/nh_files/deauth/whitelist.txt");
-                            exe.RunAsRootOutput("echo '" + getmac(wlan.getText().toString()) + "' >> /sdcard/nh_files/deauth/whitelist.txt");
+                            exe.RunAsRootOutput("echo '" + getmac("wlan0") + "' >> " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
+                            exe.RunAsRootOutput("echo '" + getmac(wlan.getText().toString()) + "' >> " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
                         }
                     } else {
                         if (wlan.getText().toString() == "wlan0") {
-                            exe.RunAsRootOutput("sed -i '/" + getmac(wlan.getText().toString()) + "/d' /sdcard/nh_files/deauth/whitelist.txt");
+                            exe.RunAsRootOutput("sed -i '/" + getmac(wlan.getText().toString()) + "/d' " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
                         } else {
-                            exe.RunAsRootOutput("sed -i '/wlan0/d' /sdcard/nh_files/deauth/whitelist.txt");
-                            exe.RunAsRootOutput("sed -i '/" + getmac(wlan.getText().toString()) + "/d' /sdcard/nh_files/deauth/whitelist.txt");
+                            exe.RunAsRootOutput("sed -i '/wlan0/d' " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
+                            exe.RunAsRootOutput("sed -i '/" + getmac(wlan.getText().toString()) + "/d' " + nh.SD_PATH + "/nh_files/deauth/whitelist.txt");
                         }
                     }
                 }

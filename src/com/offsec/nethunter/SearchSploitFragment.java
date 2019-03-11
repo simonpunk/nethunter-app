@@ -131,16 +131,12 @@ public class SearchSploitFragment extends Fragment {
                                     try {
                                         // Search List
 
-                                        //String sd = nh.SD_PATH;
-                                        String sd = "/sdcard";
-                                        //String data = nh.APP_PATH;
-                                        String data = "/data/data/com.offsec.nethunter/files/";
                                         String DATABASE_NAME = "SearchSploit";
-                                        String currentDBPath = "../databases/" + DATABASE_NAME;
+                                        String currentDBPath = "/databases/" + DATABASE_NAME;
                                         String backupDBPath = "/nh_files/" + DATABASE_NAME; // From SD directory.
 
-                                        File backupDB = new File(data, currentDBPath);
-                                        File currentDB = new File(sd, backupDBPath);
+                                        File backupDB = new File(nh.APP_PATH, currentDBPath);
+                                        File currentDB = new File(nh.SD_PATH, backupDBPath);
 
                                         FileChannel src = new FileInputStream(currentDB).getChannel();
                                         FileChannel dst = new FileOutputStream(backupDB).getChannel();
@@ -364,8 +360,8 @@ class ExploitLoader extends BaseAdapter {
 
     private void start(String file) {
         String[] command = new String[1];
-        command[0] = "su -c /data/data/com.offsec.nethunter/files/scripts/bootkali file2hid-file " + file;
-        String test = "su -c /data/data/com.offsec.nethunter/files/scripts/bootkali file2hid-file " + file;
+        command[0] = "/data/data/com.offsec.nethunter/files/scripts/bootkali file2hid-file " + file;
+        String test = "/data/data/com.offsec.nethunter/files/scripts/bootkali file2hid-file " + file;
         Log.d("Exe:", test);
         ShellExecuter exe = new ShellExecuter();
         exe.RunAsRoot(command);
