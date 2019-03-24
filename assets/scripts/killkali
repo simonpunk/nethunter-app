@@ -33,6 +33,9 @@ f_kill_service() {
 	$busybox sysctl -w kernel.shmmax=134217728
 	$busybox chmod 666 /dev/null
 
+	bklog "[!] Shutting down dbus"
+	$busybox chroot $mnt /etc/init.d/dbus stop
+
 	bklog "[!] Shutting down SSH Server"
 	$busybox chroot $mnt /etc/init.d/ssh stop
 
@@ -72,7 +75,7 @@ f_dir_umount() {
 	f_kill_service
 	f_kill_pids
 	bklog "[!] Removing all fs mounts.."
-	fs=(dev/pts dev/shm dev proc sys sdcard)
+	fs=(dev/pts dev/shm dev proc sys sdcard external_sd)
 	for i in "${fs[@]}"; do
 		f_umount_fs "$i"
 	done
@@ -84,7 +87,7 @@ f_img_umount() {
 	f_kill_service
 	f_kill_pids
 	bklog "[!] Removing all fs mounts.."
-	fs=(dev/pts dev proc sys sdcard)
+	fs=(dev/pts dev/shm dev proc sys sdcard external_sd)
 	for i in "${fs[@]}"; do
 		f_umount_fs "$i"
 	done
